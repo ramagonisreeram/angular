@@ -1,0 +1,15 @@
+{
+  "name": "Angular-Express",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "angular": "^1.6.6",
+    "bower": "^1.8.2",
+    "express": "3.2.6",
+    "jade": "*",
+    "papaparse": "^4.3.6"
+  }
+}

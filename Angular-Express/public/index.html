@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Angular JS with charts</title>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  
+
+  <script src="../node_modules/angular/angular.min.js"></script> 
+  <script src="scripts/controller/controller.js"></script> 
+    <script src="scripts/services/appservice.js"></script> 
+   <script  src="../node_modules/papaparse/papaparse.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  
+ 
+       <style>
+.logo{
+    /*position: absolute;*/
+    /*right: 0;*/
+    font-size: 1px;
+    text-indent: -9999px;
+    display: block;
+    height: 60px;
+    width: 122px;
+    background-image: url("../images/logo.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
+}
+
+.powered {
+    color: #9999a3;
+    font-size: 14px;
+    position: absolute;
+    top: 25px;
+    right: 130px;
+    font-family: "GE Inspira Sans", "Helvetica", "Arial", sans-serif;
+}
+
+.pjb {
+	margin-left:10px;
+	font-size: 35px;
+	position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+}
+
+.body {
+
+	
+}
+
+.units {
+		padding-left: 450px;
+		padding-top: 10px;
+		padding-bottom: 15px;
+		width:100%;
+		float:left;
+		
+		
+}
+
+.container1{
+ width: 60%;
+ height: 290px;
+ border-right:1px solid gray;
+ float: left;
+}
+
+.container2{
+ margin-left: 60.8%;
+ height: 290px;
+ width:38.9%;
+
+}
+
+.container3{
+ width: 32%;
+ height: 300px;
+  border-right:1px solid gray;
+  float: left;
+}
+
+.container4{
+ width: 34%;
+ height: 300px;
+ border-right:1px solid gray;
+ border-left:1px solid gray;
+  float: left;
+}
+
+.container5{
+margin-left: 67%;
+ height: 300px;
+ width:32.7%;
+
+}
+
+.mainSection{
+ width: 100%;
+ height: 100%;
+  
+}
+
+.topSection {
+    width: 100%;
+    height: 50%;
+    border-bottom:1px solid gray;
+}
+.bottomSection {
+    width: 100%;
+    height: 50%;
+   padding-top: 3px;
+   
+}
+.radio {
+font-family: 'GE Inspira Sans';
+ color: black;
+ padding-top: 10px;
+}
+
+.unitname {
+	width:5px;
+	padding-right:20px;
+}
+.sample {
+	width:60%;
+	height:40%;
+	align:right
+}
+</style>
+  
+</head>
+<body ng-app="appModule"> 
+  <div ng-controller="chartController">
+
+<div class="body">
+<nav  style="height: 55px;!important; background-color: #05090c !important">
+
+   	<div>
+    <span class="pjb">PJB</span> 
+      
+        <div style="float: right">
+            <div class="powered">Powered by</div>
+            <div class="logo"></div>
+        </div>
+    </div>
+</nav>
+ 
+ <div class="units">
+    <select name="mySelect" id="mySelect"
+      ng-options="site.name for site in sites.availableSites track by site.id"
+      ng-model="sites.selectedSite" ng-change="selectedUnit=''"></select>
+
+ <label ng-repeat="n in sites.selectedSite.units">
+       <input type="radio" ng-model="$parent.selectedUnit" ng-value="n" ng-change="renderCharts(n)"  />{{n}}
+         </label>
+         </div>
+         <hr>
+			<section class="mainSection" ng-show="!selectedUnit==''&&!isError">
+				<section class="topSection">
+
+					<div id="container1" class="container1"></div>
+
+					<div id="container2" class="container2"></div>
+
+				</section>
+				<section class="bottomSection">
+
+					<div id="container3" class="container3"></div>
+					<div id="container4" class="container4"></div>
+
+					<div id="container5" class="container5"></div>
+
+				</section>
+			</section>
+		</div>
+</body>
+
+</html>
